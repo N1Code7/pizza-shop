@@ -1,0 +1,24 @@
+body {
+  font-family: $font-1;
+  font-weight: 600;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: $color-1;
+  /** width, height **/
+}
+
+header {
+  display: none;
+}
+
+main {
+  background: $color-1;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-grow: 2;
+}

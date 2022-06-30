@@ -1,0 +1,44 @@
+footer {
+  background: $color-3;
+  height: 300px;
+  max-width: 100vw;
+  display: flex;
+  justify-content: center;
+  // position: absolute;
+  // bottom: 0;
+
+  .footer-container {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    color: $color-1;
+    gap: 50px;
+
+    .footer-left {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+
+      h2 {
+        font-family: font-2;
+        font-size: 3rem;
+      }
+    }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 40px;
+
+      h4 {
+        font-size: 1.7rem;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+      }
+    }
+  }
+}

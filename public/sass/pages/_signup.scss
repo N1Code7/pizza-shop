@@ -1,0 +1,104 @@
+.main-signup {
+  min-width: 600px;
+  max-width: 1000px;
+  margin: 120px auto 100px;
+
+  h2 {
+    font-size: 2rem;
+    font-family: font-2, sans-serif;
+    margin-bottom: 30px;
+  }
+
+  form {
+    max-width: 95%;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    gap: 35px;
+
+    h4 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      margin-left: -14px;
+    }
+
+    .rows-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+
+      .errorMsg {
+        text-align: center;
+        color: rgb(172, 25, 25);
+        margin-top: -12px;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        height: 60px;
+
+        label {
+          min-width: 130px;
+          min-width: 27%;
+
+          &.required::after {
+            content: " *";
+            color: red;
+          }
+        }
+
+        input {
+          min-width: 73%;
+          height: 50px;
+          background: $color-3;
+          border-radius: 5px;
+          border: 2px solid transparent;
+          text-align: center;
+          color: $color-1;
+          font-size: 1.2rem;
+
+          &:focus {
+            color: $color-3;
+            background: $color-1;
+            border: 2px solid $color-3;
+          }
+        }
+      }
+    }
+
+    .submit-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+      .signup__button {
+        height: 50px;
+        width: 140px;
+        background: $color-4;
+        @extend %flex-jcc-aic;
+        gap: 5px;
+        border-radius: 2px;
+        box-shadow: 0px 4px 5px 2px rgba(0, 0, 0, 0.3);
+
+        button {
+          @extend %flex-jcc-aic;
+          border: none;
+          color: $color-2;
+          background: transparent;
+          font-weight: 600;
+          padding: 17px 27px;
+          cursor: pointer;
+
+          i {
+            margin-right: 10px;
+            color: $color-2;
+          }
+        }
+      }
+    }
+  }
+}

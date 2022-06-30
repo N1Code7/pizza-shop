@@ -1,0 +1,59 @@
+//----------------------------------------------------------------
+//FONTS
+
+@font-face {
+  font-family: font-1;
+  src: url("./../assets/fonts/AnekLatin-VariableFont_wdth\,wght.ttf");
+}
+@font-face {
+  font-family: font-2;
+  src: url("./../assets/fonts/LobsterTwo-Bold.ttf");
+}
+
+//----------------------------------------------------------------
+// VARIABLES
+
+$font-1: font-1, sans-serif;
+$font-2: font-2, sans-serif;
+
+$color-1: rgb(239, 239, 239);
+$color-2: #505050;
+$color-3: rgb(54, 54, 54);
+$color-4: rgb(221, 244, 219);
+$color-5: rgb(242, 162, 162);
+
+//----------------------------------------------------------------
+// PLACEHOLDERS (@extend)
+
+%flex-jcc-aic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+%flex-jcc {
+  display: flex;
+  justify-content: center;
+}
+%flex-aic {
+  display: flex;
+  align-items: center;
+}
+%position-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+%position-center-Y {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+%position-center-X {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+//----------------------------------------------------------------
+// MIXINS (@include)

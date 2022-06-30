@@ -1,0 +1,53 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100vw;
+  min-height: 60px;
+  background: $color-2;
+  position: fixed;
+  z-index: 4;
+
+  .nav-container {
+    min-width: 100%;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+
+    .home-button-container,
+    .menu-container {
+      // min-width: 90px;
+      display: flex;
+      gap: 20px;
+      // justify-content: space-around;
+    }
+
+    button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+
+      &:hover {
+        text-shadow: 0px 2px 15px $color-5;
+      }
+    }
+
+    a {
+      padding: 5px;
+
+      &:hover {
+        text-shadow: 0px 2px 15px $color-1;
+      }
+    }
+
+    i {
+      font-size: 1.5rem;
+      color: $color-1;
+    }
+  }
+}
+
+.nav--home {
+  background: #50505058;
+}
