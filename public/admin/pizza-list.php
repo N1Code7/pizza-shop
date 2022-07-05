@@ -1,44 +1,22 @@
-<?php session_start(); ?>
+<?php
 
-<?php require_once "./../vendor/autoload.php";
+require_once "./../../vendor/autoload.php";
 
 use App\Controller\PizzaListController;
 
-if (!isset($_SESSION["id"])) {
-  $_SESSION["id"] = "";
-  $_SESSION["name"] = "";
-  $_SESSION["email"] = "";
-  session_destroy();
-}
+$view = (new PizzaListController())->start();
 
 ?>
 
-<?php $title = "Accueil"; ?>
-<?php $nav_home = "nav--home"; ?>
+<?php
 
-<?php ob_start(); ?>
-<header class="header-home">
-  <div class="bg-img"></div>
-  <div class="filter"></div>
-  <div class="content">
-    <h1>PizzaShop</h1>
-    <p>Vos meilleures pizzas à portée de click !</p>
-  </div>
-</header>
-<?php $header_content = ob_get_clean(); ?>
+$title = "Liste des Pizzas";
 
-<?php include "./partials/page_start.php";
+include "./../partials/page_start.php";
 
-$view = (new PizzaListController)->start();
-
-var_dump($_POST);
 ?>
 
-<div class="main-home">
-  <p>Bonjour <?= $_SESSION["name"]; ?></p>
-  <h2>Nos pizzas</h2>
-
-  <?php var_dump($view->list) ?>
+<div class="main-pizza-list">
 
   <div class="cards-container">
     <?php foreach ($view->list as $pizza) : ?>
@@ -63,4 +41,4 @@ var_dump($_POST);
 
 </div>
 
-<?php include "./partials/page_end.php"; ?>
+<?php include "./../partials/page_end.php"; ?>

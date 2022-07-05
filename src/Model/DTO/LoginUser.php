@@ -15,7 +15,7 @@ class LoginUser
   public function __construct()
   {
     $this->email = isset($_POST["email"]) ? htmlspecialchars($_POST["email"]) : "";
-    $this->password = isset($_POST["password"]) ? htmlspecialchars($_POST["password"]) : "";
+    $this->password = isset($_POST["password"]) ? $_POST["password"] : "";
   }
 
   public function dbConnection()

@@ -10,7 +10,7 @@ use App\Controller\SignupController;
 
 $controller = new SignupController();
 
-$view = $controller->saveUser();
+$view = $controller->start();
 
 ?>
 

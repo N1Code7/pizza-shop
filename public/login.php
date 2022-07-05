@@ -4,28 +4,20 @@ require_once "./../vendor/autoload.php";
 
 use App\Controller\LoginController;
 
-?>
+$title = "Connexion";
 
-<?php $title = "Connexion"; ?>
-<?php $nav_home = ""; ?>
-<?php $header_content = "" ?>
+$view = (new LoginController())->start();
 
-<?php
-
-$controller = new LoginController();
-
-$view = $controller->toLogin();
+include "./partials/page_start.php";
 
 ?>
-
-<?php ob_start();  ?>
 
 <div class="main-login">
   <h2>Connexion</h2>
-  <form action="" method="POST">
+  <form method="POST">
     <div class="row row__email">
       <label for="email">Votre mail :</label>
-      <input type="email" name="email" id="email">
+      <input type="email" name="email" id="email" value="<? $view->credentials->email ?>">
     </div>
     <?php if ($view->errors->email) : ?>
       <p class="errorMsg"><?= $view->errors->email ?></p>
@@ -50,6 +42,4 @@ $view = $controller->toLogin();
   </form>
 </div>
 
-<?php $main = ob_get_clean(); ?>
-
-<?php require("./templates/layout.php"); ?>
+<?php include "./partials/page_end.php"; ?>

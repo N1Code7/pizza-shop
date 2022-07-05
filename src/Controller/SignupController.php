@@ -4,105 +4,86 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use PDO;
-use Exception;
-use App\Model\DTO\NewUser;
-use App\Model\DTO\NewUserError;
+use App\Validator\Validator;
 use App\View\SignupView;
 
 class SignupController
 {
-  public function hello(string $name): string
-  {
-    return "hello " . $name;
-  }
-
-  public function saveUser(): SignupView
+  public function start(): SignupView
   // : string indique le typage de la variable ou de la méthode/fonction
   {
-    $newUser = new NewUser();
-
-    $errors = new NewUserError();
+    $view = new SignupView();
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-      if (!$newUser->last_name || strlen($newUser->last_name) < 2) {
-        $errors->last_name = "Vous devez spécifier un Nom de 2 caractères minimum.";
+      if (!$view->newUser->last_name || strlen($view->newUser->last_name) < 2) {
+        $view->errors->last_name = "Vous devez spécifier un Nom de 2 caractères minimum.";
+        return $view;
       }
 
-      if (!$newUser->first_name || strlen($newUser->first_name) < 2) {
-        $errors->first_name = "Vous devez spécifier un Nom de 2 caractères minimum.";
+      if (!$view->newUser->first_name || strlen($view->newUser->first_name) < 2) {
+        $view->errors->first_name = "Vous devez spécifier un Nom de 2 caractères minimum.";
+        return $view;
       }
 
-      if (!$newUser->email || !filter_var($newUser->email, FILTER_VALIDATE_EMAIL)) {
-        $errors->email = "Votre email n'est pas valide.";
+      if (!$view->newUser->email || !filter_var($view->newUser->email, FILTER_VALIDATE_EMAIL)) {
+        $view->errors->email = "Votre email n'est pas valide.";
+        return $view;
       }
 
-      if (!$newUser->password || strlen($newUser->password) < 6) {
-        $errors->password = "Votre mot de passe doit comporter au minimum 6 caractères.";
+      if (!$view->newUser->password || strlen($view->newUser->password) < 6) {
+        $view->errors->pview->assword = "Votre mot de passe doit comporter au minimum 6 caractères.";
+        return $view;
       }
 
-      if (!$newUser->password_confirm || strlen($newUser->password_confirm) < 6) {
-        $errors->password_confirm = "Votre mot de passe doit comporter au minimum 6 caractères.";
+      if (!$view->newUser->password_confirm || strlen($view->newUser->password_confirm) < 6) {
+        $view->errors->password_confirm = "Votre mot de passe doit comporter au minimum 6 caractères.";
+        return $view;
       }
 
-      if ($newUser->password !== $newUser->password_confirm) {
-        $errors->password_confirm = "Vos deux mots de passe ne correspondent pas.";
+      if ($view->newUser->password !== $view->newUser->password_confirm) {
+        $view->errors->password_confirm = "Vos deux mots de passe ne correspondent pas.";
+        return $view;
       }
 
-      if (!$newUser->phone || strlen($newUser->phone) != 10) {
-        $errors->phone = "Le numéro de téléphone doit contenir 10 chiffres.";
+      if (!$view->newUser->phone || strlen($view->newUser->phone) != 10) {
+        $view->errors->phone = "Le numéro de téléphone doit contenir 10 chiffres.";
+        return $view;
       }
 
-      if (!$newUser->city) {
-        $errors->city = "Vous devez spécifier une ville.";
+      if (!$view->newUser->city) {
+        $view->errors->city = "Vous devez spécifier une ville.";
+        return $view;
       }
 
-      if (!$newUser->cp || strlen($newUser->cp) != 5) {
-        $errors->cp = "Votre code postal doit contenir 5 chiffres.";
+      if (!$view->newUser->cp || strlen($view->newUser->cp) != 5) {
+        $view->errors->cp = "Votre code postal doit contenir 5 chiffres.";
+        return $view;
       }
 
-      if (!$newUser->address) {
-        $errors->address = "Vous devez spécifier une numéro et un nom de voie.";
+      if (!$view->newUser->address) {
+        $view->errors->address = "Vous devez spécifier une numéro et un nom de voie.";
+        return $view;
       }
 
-      $hasError = false;
-      foreach ($errors as $key => $value) {
-        if ($value) {
-          $hasError = true;
-          break;
-        }
-      }
+      // $hasError = false;
+      // foreach ($view->errors as $key => $value) {
+      //   if ($value) {
+      //     $hasError = true;
+      //     break;
+      //   }
+      // }
 
-      if (!$hasError) {
+      // if (!$hasError) {
 
-        try {
-          // self::$db = new PDO("mysql:host=localhost;dbname=pizzashop", "root", "root");
-          $db = new PDO("mysql:host=127.0.0.1;dbname=pizzashop;port=8889", "root", "root");
-        } catch (Exception $e) {
-          die('Erreur : ' . $e->getMessage());
-        }
+      // Appel à la BDD
 
-        $req = $db->prepare("INSERT INTO users (`last_name`, `first_name`, `email`, `password`, `phone`, `city`, `cp`, `address`, `supplement`, `type`) VALUES (?,?,?,?,?,?,?,?,?,?)");
-        $req->execute([
-          $newUser->last_name,
-          $newUser->first_name,
-          $newUser->email,
-          password_hash($newUser->password, PASSWORD_DEFAULT),
-          $newUser->phone,
-          $newUser->city,
-          $newUser->cp,
-          $newUser->address,
-          $newUser->supplement,
-          "client"
-        ]);
+      header("Location: ./login.php");
 
-        header("Location: ./login.php");
-
-        return new SignupView($newUser, $errors);
-      }
+      //   return $view;
+      // }
     }
 
-    return new SignupView($newUser, $errors);
+    return $view;
   }
 }

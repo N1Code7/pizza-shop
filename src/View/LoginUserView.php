@@ -4,14 +4,18 @@ declare(strict_types=1);
 
 namespace App\View;
 
-use App\Model\DTO\LoginUserError;
+use App\Model\DTO\Credential;
+use App\Model\DTO\CredentialError;
 
 class LoginUserView
 {
-  public LoginUserError $errors;
+  public Credential $credentials;
 
-  public function __construct(LoginUserError $errors)
+  public CredentialError $errors;
+
+  public function __construct()
   {
-    $this->errors = $errors;
+    $this->credentials = new Credential();
+    $this->errors = new CredentialError();
   }
 }

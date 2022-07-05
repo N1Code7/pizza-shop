@@ -13,9 +13,9 @@ class SignupView
 
   public NewUserError $errors;
 
-  public function __construct(NewUser $newUser, NewUserError $errors)
+  public function __construct()
   {
-    $this->newUser = $newUser;
-    $this->errors = $errors;
+    $this->newUser = new NewUser();
+    $this->errors = new NewUserError();
   }
 }

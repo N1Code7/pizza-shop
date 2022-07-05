@@ -5,7 +5,6 @@ use App\Controller\LogoutController;
 ob_start(); ?>
 
 <?php if (!isset($_SESSION["id"])) {
-  session_start();
   $_SESSION["id"] = "";
   $_SESSION["name"] = "";
   $_SESSION["email"] = "";
